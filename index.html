@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .clock {
+      border: 100px;
+      border-color: rgb(255, 0, 0);
+      font-size: 150px;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      text-shadow: 2px 3px 5px black;
+      color: white;
+      text-align: center;
+      font-weight: 700;
+      margin-top: 150px;
+    }
+    .bd {
+      background-color: rgb(186, 183, 183);
+    }
+    .date {
+      color: white;
+      text-align: center;
+      font-size: 35px;
+      text-shadow: 2px 2px 5px black;
+    }
+  </style>
+  <body
+    class="bd"
+    onload="display_hr(),display_min(),display_sec(),display_date;"
+  >
+    <div class="clock">
+      <span id="hr"></span>
+      <span id="mn"></span>
+      <span id="ct"></span>
+    </div>
+    <div class="date" id="today"></div>
+  </body>
+  <script>
+    const dt = new Date();
+
+    function display_hr() {
+      let h = new Date();
+      document.getElementById("hr").innerHTML = h.getHours();
+      display_c();
+    }
+
+    function display_min() {
+      let m = new Date();
+      document.getElementById("mn").innerHTML = " : " + m.getMinutes();
+      display_c();
+    }
+
+    function display_c() {
+      var refresh = 1000; // Refresh rate in milli seconds
+      mytime = setTimeout("display_sec()", refresh);
+      myMin = setTimeout("display_min()", refresh); //you can make another function for min and hr for refreshing
+      myHr = setTimeout("display_hr()", refresh);
+      myDate = setTimeout("display_date()", refresh);
+    }
+
+    function display_sec() {
+      let s = new Date();
+      document.getElementById("ct").innerHTML = ": " + s.getSeconds();
+      display_c();
+    }
+    function display_date() {
+      var date = new Date();
+      document.getElementById("today").innerHTML = date.toDateString();
+      display_c();
+    }
+  </script>
+</html>
